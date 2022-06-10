@@ -9,6 +9,8 @@ import 'package:path_provider/path_provider.dart' as syspath;
 
 import 'package:place/helpers/db_helper.dart';
 import 'package:place/models/place.dart';
+import 'package:place/providers/PlacesProvider.dart';
+import 'package:provider/provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const route = "/place/add";
@@ -95,7 +97,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       place.image = _routeImage;
 
                       if (place.id == 0) {
-                        DBHelper.insert(place);
+                        // DBHelper.insert(place);
+                        Provider.of<PlacesProvider>(context, listen: false)
+                            .addPlace(place);
                         place = Place.empty();
                         _init();
                         var ran = Random();
