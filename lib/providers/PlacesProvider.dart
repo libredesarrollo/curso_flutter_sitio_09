@@ -20,4 +20,16 @@ class PlacesProvider with ChangeNotifier {
     _places.add(place);
     notifyListeners();
   }
+
+  Future<void> updatePlace(place) async {
+    DBHelper.update(place);
+    _places[_places.indexWhere((p) => p.id == place.id)] = place;
+    notifyListeners();
+  }
+
+  Future<void> deletePlace(place) async {
+    DBHelper.delete(place);
+    _places.remove(place);
+    notifyListeners();
+  }
 }

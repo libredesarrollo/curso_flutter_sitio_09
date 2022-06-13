@@ -106,7 +106,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                         _keyImageField = ran.nextInt(100).toString();
                         setState(() {});
                       } else {
-                        DBHelper.update(place);
+                        //DBHelper.update(place);
+                        Provider.of<PlacesProvider>(context, listen: false)
+                            .updatePlace(place);
                       }
 
                       ScaffoldMessenger.of(context).showSnackBar(

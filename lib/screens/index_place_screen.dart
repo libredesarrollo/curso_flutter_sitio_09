@@ -16,8 +16,6 @@ class IndexPlaceScreen extends StatefulWidget {
 }
 
 class _IndexPlaceScreenState extends State<IndexPlaceScreen> {
-  List<Place> places = [];
-
   @override
   void initState() {
     _init();
@@ -67,14 +65,16 @@ class _IndexPlaceScreenState extends State<IndexPlaceScreen> {
                           direction: DismissDirection.endToStart,
                           onDismissed: (direction) {
                             setState(() {
-                              DBHelper.delete(placesProvider.places[index]);
+                              // DBHelper.delete(placesProvider.places[index]);
+                              placesProvider
+                                  .deletePlace(placesProvider.places[index]);
 
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       backgroundColor: Colors.red,
                                       content: Text("Site Removed")));
 
-                              placesProvider.places.removeAt(index);
+                              //placesProvider.places.removeAt(index);
                             });
                           },
                           child: ListTile(
